@@ -1,0 +1,58 @@
+{% extends "base.html.twig" %}
+
+{% block h1 %}Ajouter un produit{% endblock %}
+
+{% block body %}
+
+    <a class="btn btn-dark" href="{{ path('produit_afficher') }}">Retour</a>
+
+
+
+    {#
+        Il existe 2 façons d'afficher un formulaire
+
+        1-
+        {{ form(formProduit) }}
+        La fonction twig form() permet d'afficher un formulaire,
+        Son argument est la vue du formulaire
+
+
+        2-
+        toutes kes autres fonctions twig
+        form_start() - form_end()
+
+        pour appeler un élément du formulaire on utilise la fonction
+        form_row() 
+        syntaxe : parent.enfant
+
+        form_row() = form_label() + form_widget() + form_help() + form_errors()
+    #}
+
+    {{ form_start(formProduit) }} {# ouverture de la balise form #}
+
+    <div>
+        <div class="col-6">
+            {{ form_row(formProduit.titre) }}
+        </div>
+        <div class="col-6">
+            {{ form_row(formProduit.prix) }}
+        </div>
+    </div>
+
+    {# {{ form_row(formProduit.description) }} #}
+    {{ form_widget(formProduit.description) }}
+    {{ form_label(formProduit.description) }}
+    {{ form_help(formProduit.description) }}
+    {{ form_errors(formProduit.description) }}
+
+    {# {{ form_rest(formProduit.description) }} #}
+
+    <input type="submit" value="Ajouter" class="btn btn-success w-100">
+
+    {{ form_end(formProduit) }} {# fermeture de la balise form #}
+    
+
+    {# <button class="btn tbn-danger w-100">Enregistrer</button> #}
+
+
+{% endblock %}
